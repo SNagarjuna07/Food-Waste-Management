@@ -1,0 +1,64 @@
+####################################
+# Maven / Java
+####################################
+target/
+test/
+logs/
+META-INF
+*.class
+*.log
+hs_err_pid*
+
+####################################
+# Maven Wrapper
+####################################
+.mvn/wrapper/maven-wrapper.jar
+
+####################################
+# Environment / Secrets
+####################################
+.env
+.env.*
+!.env.example
+
+
+####################################
+# Spring Boot
+####################################
+HELP.md
+
+####################################
+# IDEs
+####################################
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+.history/
+
+####################################
+# OS
+####################################
+.DS_Store
+Thumbs.db
