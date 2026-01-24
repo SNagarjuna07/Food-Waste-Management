@@ -22,6 +22,15 @@ The system supports **JWT-based authentication**, **role-aware authorization**, 
 
 ---
 
+### 🌐 OAuth2 Authentication (Google)
+- Secure login using Google OAuth2
+- Automatic user provisioning on first login
+- Seamless integration with existing JWT-based security
+- Stateless OAuth2 flow (no server-side sessions
+- Suitable for web and mobile clients
+
+---
+
 ### ⚡ Rate Limiting (Redis-Backed)
 - Profile-based rate limits: **AUTH, READ, WRITE, UNLIMITED**
 - IP-based and User-based throttling
