@@ -1,3 +1,9 @@
+![Java](https://img.shields.io/badge/Java-17-blue)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0-green)
+![Build](https://img.shields.io/badge/Build-Maven-success)
+![Security](https://img.shields.io/badge/Security-JWT-red)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
 # 🍽️ Food Waste Management Backend
 
 A **secure, scalable, and production-ready Spring Boot backend** designed to manage food waste donation workflows efficiently.  
