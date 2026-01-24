@@ -81,6 +81,12 @@ The system supports **JWT-based authentication**, **role-aware authorization**, 
 
 ---
 
+## ⚙️ Swagger Config
+
+<img width="1799" height="2351" alt="Swagger" src="https://github.com/user-attachments/assets/d04adc9b-32f3-4966-a97f-e4d6e6b3f2c5" />
+
+---
+
 ## 🌍 Production Readiness
 
 - Secrets excluded from Git
