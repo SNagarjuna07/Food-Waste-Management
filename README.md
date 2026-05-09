@@ -4,7 +4,7 @@
 ![Security](https://img.shields.io/badge/Security-JWT-red)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-# 🍽️ Food Waste Management — Backend
+# 🍽️ Food Waste Management Backend
 
 A **production-ready Spring Boot backend** for managing food waste donation workflows — built from scratch as a solo project.
 
