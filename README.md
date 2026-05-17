@@ -258,7 +258,7 @@ Spring Boot Actuator with custom domain health indicators:
 ## 👤 Author
 
 **S Nagarjuna** — Java Backend Developer  
-[LinkedIn](https://www.linkedin.com/in/s-nagarjuna) · [GitHub](https://github.com/SNagarjuna07) · nagarjun2790@gmail.com
+[LinkedIn](https://www.linkedin.com/in/s-nagarjuna)
 
 ---
 
