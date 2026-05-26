@@ -1,18 +1,5 @@
 package com.abc.foodwastemanagement.service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
-import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.abc.foodwastemanagement.dto.fooddonor.FoodDonorCreationRequest;
 import com.abc.foodwastemanagement.dto.fooddonor.FoodDonorResponse;
 import com.abc.foodwastemanagement.dto.fooddonor.FoodDonorUpdate;
@@ -24,16 +11,25 @@ import com.abc.foodwastemanagement.exception.OperationNotAllowedException;
 import com.abc.foodwastemanagement.exception.ResourceNotFoundException;
 import com.abc.foodwastemanagement.exception.UnauthorizedActionException;
 import com.abc.foodwastemanagement.repository.FoodDonorRepository;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Slf4j
-
+@RequiredArgsConstructor
 public class FoodDonorService {
 
-    @Autowired
-    private FoodDonorRepository foodDonorRepository;
+    private final FoodDonorRepository foodDonorRepository;
 
     // Create a DONOR
     @Transactional

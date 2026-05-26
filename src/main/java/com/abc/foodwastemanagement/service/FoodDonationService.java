@@ -1,18 +1,5 @@
 package com.abc.foodwastemanagement.service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
-import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.abc.foodwastemanagement.dto.fooddonation.FoodDonationResponse;
 import com.abc.foodwastemanagement.dto.fooddonation.UpdateDonation;
 import com.abc.foodwastemanagement.dto.page.PageResponse;
@@ -31,30 +18,36 @@ import com.abc.foodwastemanagement.exception.UnauthorizedActionException;
 import com.abc.foodwastemanagement.kafka.NotificationProducer;
 import com.abc.foodwastemanagement.notification.NotificationServiceImpl;
 import com.abc.foodwastemanagement.repository.FoodDonationRepository;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class FoodDonationService {
 
-    @Autowired
-    private FoodDonationRepository foodDonationRepository;
-    
-    @Autowired
-    private FoodDonorService foodDonorService;
+    private final FoodDonationRepository foodDonationRepository;
 
-    @Autowired
-    private CollectionCenterService collectionCenterService;
+    private final FoodDonorService foodDonorService;
 
-    @Autowired
-    private NotificationProducer notificationProducer;
+    private final CollectionCenterService collectionCenterService;
 
-    @Autowired
-    private AuthenticatedUserService authenticatedUserService;
+    private final NotificationProducer notificationProducer;
 
-    @Autowired
-    private NotificationServiceImpl notificationServiceImpl;
+    private final AuthenticatedUserService authenticatedUserService;
+
+    private final NotificationServiceImpl notificationServiceImpl;
 
     // CREATE a donation
     @Transactional  

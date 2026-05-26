@@ -1,13 +1,14 @@
 package com.abc.foodwastemanagement.service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
+import com.abc.foodwastemanagement.entity.User;
+import com.abc.foodwastemanagement.enums.AuthProvider;
+import com.abc.foodwastemanagement.enums.ErrorCode;
+import com.abc.foodwastemanagement.exception.OAuthException;
+import com.abc.foodwastemanagement.exception.ResourceAlreadyExistsException;
+import com.abc.foodwastemanagement.repository.UserRepository;
+import com.abc.foodwastemanagement.security.JwtUtil;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -17,13 +18,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import com.abc.foodwastemanagement.entity.User;
-import com.abc.foodwastemanagement.enums.AuthProvider;
-import com.abc.foodwastemanagement.enums.ErrorCode;
-import com.abc.foodwastemanagement.exception.OAuthException;
-import com.abc.foodwastemanagement.exception.ResourceAlreadyExistsException;
-import com.abc.foodwastemanagement.repository.UserRepository;
-import com.abc.foodwastemanagement.security.JwtUtil;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  *
@@ -48,6 +46,7 @@ import com.abc.foodwastemanagement.security.JwtUtil;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class GoogleOAuthServiceImpl implements GoogleOAuthService {
 
     /**
@@ -71,26 +70,22 @@ public class GoogleOAuthServiceImpl implements GoogleOAuthService {
     /**
      * Used to communicate with Google OAuth APIs
      */
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     /**
      * User persistence layer
      */
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     /**
      * Used to encode a random password for OAuth users
      */
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * Utility for JWT creation
      */
-    @Autowired
-    private JwtUtil jwtUtil;
+    private final JwtUtil jwtUtil;
 
     /**
      * MAIN AUTHENTICATION METHOD

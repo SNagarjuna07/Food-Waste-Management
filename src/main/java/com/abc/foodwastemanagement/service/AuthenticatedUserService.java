@@ -1,24 +1,23 @@
 package com.abc.foodwastemanagement.service;
 
+import com.abc.foodwastemanagement.dto.user.UserIdentity;
+import com.abc.foodwastemanagement.entity.User;
+import com.abc.foodwastemanagement.enums.ErrorCode;
+import com.abc.foodwastemanagement.exception.UnauthorizedActionException;
+import com.abc.foodwastemanagement.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.abc.foodwastemanagement.dto.user.UserIdentity;
-import com.abc.foodwastemanagement.entity.User;
-import com.abc.foodwastemanagement.enums.ErrorCode;
-import com.abc.foodwastemanagement.exception.UnauthorizedActionException;
-import com.abc.foodwastemanagement.repository.UserRepository;
-
 @Service
+@RequiredArgsConstructor
 public class AuthenticatedUserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
     public UserIdentity getCurrentUserIdentity() {

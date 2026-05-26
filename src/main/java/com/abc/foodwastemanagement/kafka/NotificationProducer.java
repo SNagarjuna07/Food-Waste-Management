@@ -1,19 +1,16 @@
 package com.abc.foodwastemanagement.kafka;
 
-import java.time.Instant;
-import java.util.UUID;
-
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Component;
-
 import com.abc.foodwastemanagement.enums.KafkaNotificationType;
 import com.abc.foodwastemanagement.notification.constants.NotificationTopics;
 import com.abc.foodwastemanagement.notification.event.NotificationEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
+
+import java.time.Instant;
+import java.util.UUID;
 
 @Component
 @Slf4j

@@ -1,7 +1,15 @@
 package com.abc.foodwastemanagement.service;
 
+import com.abc.foodwastemanagement.dto.collectioncenter.CollectionCenterRequest;
+import com.abc.foodwastemanagement.dto.collectioncenter.CollectionCenterResponse;
+import com.abc.foodwastemanagement.dto.page.PageResponse;
+import com.abc.foodwastemanagement.entity.CollectionCenter;
+import com.abc.foodwastemanagement.enums.ErrorCode;
+import com.abc.foodwastemanagement.exception.ResourceNotFoundException;
+import com.abc.foodwastemanagement.repository.CollectionCenterRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
@@ -11,22 +19,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.abc.foodwastemanagement.dto.collectioncenter.CollectionCenterRequest;
-import com.abc.foodwastemanagement.dto.collectioncenter.CollectionCenterResponse;
-import com.abc.foodwastemanagement.dto.page.PageResponse;
-import com.abc.foodwastemanagement.entity.CollectionCenter;
-import com.abc.foodwastemanagement.enums.ErrorCode;
-import com.abc.foodwastemanagement.exception.ResourceNotFoundException;
-import com.abc.foodwastemanagement.repository.CollectionCenterRepository;
-
-import lombok.extern.slf4j.Slf4j;
-
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CollectionCenterService {
 
-    @Autowired
-    private CollectionCenterRepository collectionCenterRepository;
+    private final CollectionCenterRepository collectionCenterRepository;
 
     // ========================= ADMIN =========================
 

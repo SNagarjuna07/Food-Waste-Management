@@ -1,9 +1,7 @@
 package com.abc.foodwastemanagement.health;
 
 import com.abc.foodwastemanagement.repository.CollectionCenterRepository;
-
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.health.contributor.Health;
 import org.springframework.boot.health.contributor.HealthIndicator;
 import org.springframework.stereotype.Component;

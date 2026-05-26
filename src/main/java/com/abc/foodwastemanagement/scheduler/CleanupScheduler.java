@@ -1,18 +1,15 @@
 package com.abc.foodwastemanagement.scheduler;
 
-import java.time.LocalDateTime;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.abc.foodwastemanagement.repository.EmailVerificationRepository;
+import com.abc.foodwastemanagement.repository.NotificationRepository;
+import com.abc.foodwastemanagement.repository.PasswordResetTokenRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.abc.foodwastemanagement.repository.EmailVerificationRepository;
-import com.abc.foodwastemanagement.repository.PasswordResetTokenRepository;
-import com.abc.foodwastemanagement.repository.NotificationRepository;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDateTime;
 
 @Slf4j
 @Component

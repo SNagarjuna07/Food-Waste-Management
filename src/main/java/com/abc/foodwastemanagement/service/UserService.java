@@ -1,19 +1,5 @@
 package com.abc.foodwastemanagement.service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
-
-import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.abc.foodwastemanagement.constants.RoleConstants;
 import com.abc.foodwastemanagement.dto.user.RegisterUserRequest;
 import com.abc.foodwastemanagement.dto.user.UserIdentity;
@@ -25,43 +11,44 @@ import com.abc.foodwastemanagement.enums.AuthProvider;
 import com.abc.foodwastemanagement.enums.ErrorCode;
 import com.abc.foodwastemanagement.enums.KafkaNotificationType;
 import com.abc.foodwastemanagement.enums.NotificationType;
-import com.abc.foodwastemanagement.exception.InvalidRequestException;
-import com.abc.foodwastemanagement.exception.ResourceAlreadyExistsException;
-import com.abc.foodwastemanagement.exception.ResourceNotFoundException;
-import com.abc.foodwastemanagement.exception.UnauthorizedActionException;
-import com.abc.foodwastemanagement.exception.UserNotFoundException;
+import com.abc.foodwastemanagement.exception.*;
 import com.abc.foodwastemanagement.kafka.NotificationProducer;
 import com.abc.foodwastemanagement.notification.NotificationService;
 import com.abc.foodwastemanagement.repository.EmailVerificationRepository;
 import com.abc.foodwastemanagement.repository.UserRepository;
 import com.abc.foodwastemanagement.security.JwtUtil;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private EmailVerificationRepository emailVerificationRepository;
+    private final EmailVerificationRepository emailVerificationRepository;
 
-    @Autowired
-    private EmailService emailService;
+    private final EmailService emailService;
 
-    @Autowired
-    private NotificationProducer notificationProducer;
+    private final NotificationProducer notificationProducer;
 
-    @Autowired
-    private NotificationService notificationService;
+    private final NotificationService notificationService;
 
-    @Autowired
-    private AuthenticatedUserService authenticatedUserService;
+    private final AuthenticatedUserService authenticatedUserService;
 
     // Register
     @Transactional

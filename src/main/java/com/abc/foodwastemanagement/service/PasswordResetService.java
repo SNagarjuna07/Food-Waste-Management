@@ -1,13 +1,5 @@
 package com.abc.foodwastemanagement.service;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.abc.foodwastemanagement.email.EmailService;
 import com.abc.foodwastemanagement.entity.PasswordResetToken;
 import com.abc.foodwastemanagement.entity.User;
@@ -15,42 +7,38 @@ import com.abc.foodwastemanagement.enums.AuthProvider;
 import com.abc.foodwastemanagement.enums.ErrorCode;
 import com.abc.foodwastemanagement.enums.KafkaNotificationType;
 import com.abc.foodwastemanagement.enums.NotificationType;
-import com.abc.foodwastemanagement.exception.ExpiredPasswordResetTokenException;
-import com.abc.foodwastemanagement.exception.InvalidPasswordResetTokenException;
-import com.abc.foodwastemanagement.exception.InvalidRequestException;
-import com.abc.foodwastemanagement.exception.PasswordResetTokenAlreadyUsedException;
-import com.abc.foodwastemanagement.exception.UserNotFoundException;
+import com.abc.foodwastemanagement.exception.*;
 import com.abc.foodwastemanagement.kafka.NotificationProducer;
 import com.abc.foodwastemanagement.notification.NotificationService;
-import com.abc.foodwastemanagement.repository.UserRepository;
 import com.abc.foodwastemanagement.repository.PasswordResetTokenRepository;
-
-
+import com.abc.foodwastemanagement.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class PasswordResetService {
 
     private static final int TOKEN_EXPIRY_MINUTES = 15;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private PasswordResetTokenRepository tokenRepository;
+    private final PasswordResetTokenRepository tokenRepository;
 
-    @Autowired
-    private EmailService emailService;
+    private final EmailService emailService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private NotificationProducer notificationProducer; 
+    private final NotificationProducer notificationProducer;
 
-    @Autowired
-    private NotificationService notificationService;
+    private final NotificationService notificationService;
 
     // Forgot password
     public void forgotPassword(String email) {
