@@ -3,6 +3,7 @@ package com.abc.foodwastemanagement.kafka;
 import com.abc.foodwastemanagement.dto.notification.NotificationEventDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,13 +12,10 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class NotificationConsumer {
 
     private final ObjectMapper objectMapper;
-
-    public NotificationConsumer(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
 
     @KafkaListener(topics = "app-notification-events", groupId = "app-notification-group")
     public void consume(String message, Acknowledgment acknowledgment) {

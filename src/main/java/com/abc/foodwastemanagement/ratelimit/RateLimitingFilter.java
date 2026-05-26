@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.stereotype.Component;
@@ -19,16 +20,14 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class RateLimitingFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private RateLimiterService rateLimiterService;
+    private final RateLimiterService rateLimiterService;
 
-    @Autowired
-    private RateLimitRuleResolver ruleResolver;
+    private final RateLimitRuleResolver ruleResolver;
 
-    @Autowired
-    private RateLimitKeyResolver keyResolver;
+    private final RateLimitKeyResolver keyResolver;
 
     @Override
     protected void doFilterInternal(

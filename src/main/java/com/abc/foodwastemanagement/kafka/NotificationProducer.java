@@ -3,6 +3,7 @@ package com.abc.foodwastemanagement.kafka;
 import java.time.Instant;
 import java.util.UUID;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
@@ -16,13 +17,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class NotificationProducer {
 
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-    
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final KafkaTemplate<String, String> kafkaTemplate;
+
+    private final ObjectMapper objectMapper;
 
     public void publish(
             String userId,

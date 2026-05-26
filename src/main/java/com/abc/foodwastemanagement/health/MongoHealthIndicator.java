@@ -1,5 +1,6 @@
 package com.abc.foodwastemanagement.health;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.health.contributor.Health;
 import org.springframework.boot.health.contributor.HealthIndicator;
@@ -8,10 +9,10 @@ import org.springframework.stereotype.Component;
 
 
 @Component
+@RequiredArgsConstructor
 public class MongoHealthIndicator implements HealthIndicator {
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
+    private final MongoTemplate mongoTemplate;
 
     public Health health() {
         try {

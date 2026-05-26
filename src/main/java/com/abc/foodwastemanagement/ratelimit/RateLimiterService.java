@@ -3,6 +3,7 @@ package com.abc.foodwastemanagement.ratelimit;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
@@ -31,17 +32,11 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class RateLimiterService {
 
     private final RedisTemplate<String, RateLimitBucket> redisTemplate;
     private final RateLimitingProperties properties;
-
-    public RateLimiterService(
-            RedisTemplate<String, RateLimitBucket> redisTemplate,
-            RateLimitingProperties properties) {
-        this.redisTemplate = redisTemplate;
-        this.properties = properties;
-    }
 
     /**
      * Enforces rate limiting for the given Redis key.

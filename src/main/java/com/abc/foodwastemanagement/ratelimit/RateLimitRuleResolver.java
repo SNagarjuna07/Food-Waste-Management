@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
@@ -34,6 +35,7 @@ import jakarta.servlet.http.HttpServletRequest;
  * Pure rule resolution with no side effects.
  */
 @Component
+@RequiredArgsConstructor
 public class RateLimitRuleResolver {
 
     private final RateLimitingProperties props;
@@ -44,10 +46,6 @@ public class RateLimitRuleResolver {
      */
     private Map<String, List<RateLimitingProperties.EndpointRule>> methodRules;
     private List<RateLimitingProperties.EndpointRule> pathOnlyRules;
-
-    public RateLimitRuleResolver(RateLimitingProperties props) {
-        this.props = props;
-    }
 
     /*
      * Pre-processing happens ONCE at startup

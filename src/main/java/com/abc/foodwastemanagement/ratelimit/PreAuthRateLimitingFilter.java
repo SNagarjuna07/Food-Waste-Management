@@ -11,6 +11,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.security.access.AccessDeniedException;
@@ -33,16 +34,14 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class PreAuthRateLimitingFilter implements Filter {
 
-    @Autowired
-    private RateLimiterService rateLimiterService;
+    private final RateLimiterService rateLimiterService;
 
-    @Autowired
-    private RateLimitRuleResolver ruleResolver;
+    private final RateLimitRuleResolver ruleResolver;
 
-    @Autowired
-    private RateLimitKeyResolver keyResolver;
+    private final RateLimitKeyResolver keyResolver;
 
     @Override
     public void doFilter(

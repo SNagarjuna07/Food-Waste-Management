@@ -2,6 +2,7 @@ package com.abc.foodwastemanagement.email;
 
 import java.time.LocalDateTime;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,19 +19,16 @@ import com.abc.foodwastemanagement.repository.EmailVerificationRepository;
 import com.abc.foodwastemanagement.repository.UserRepository;
 
 @Service
+@RequiredArgsConstructor
 public class EmailVerificationService {
 
-    @Autowired
-    private EmailVerificationRepository emailVerificationRepository;
+    private final EmailVerificationRepository emailVerificationRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private NotificationService notificationService;
+    private final NotificationService notificationService;
 
-    @Autowired
-    private NotificationProducer notificationProducer;
+    private final NotificationProducer notificationProducer;
 
     @Transactional
     public void verifyEmail(String tokenValue) {

@@ -2,6 +2,7 @@ package com.abc.foodwastemanagement.notification;
 
 import java.time.LocalDateTime;
 
+import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -25,10 +26,10 @@ import com.abc.foodwastemanagement.notification.event.NotificationEvent;
 import com.abc.foodwastemanagement.repository.NotificationRepository;
 
 @Service
+@RequiredArgsConstructor
 public class NotificationServiceImpl implements NotificationService {
 
-    @Autowired
-    private NotificationRepository notificationRepository;
+    private final NotificationRepository notificationRepository;
 
     /* ================= CREATE ================= */
 
