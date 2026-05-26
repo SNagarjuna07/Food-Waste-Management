@@ -1,5 +1,6 @@
 package com.abc.foodwastemanagement.controller;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.ResponseEntity;
@@ -28,19 +29,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/auth/google")
 @Tag(name = "Google login API")
 @Slf4j
+@RequiredArgsConstructor
 public class GoogleAuthController {
 
     /**
      * Google OAuth service abstraction
      */
     private final GoogleOAuthServiceImpl googleOAuthServiceImpl;
-
-    /**
-     * Constructor injection (recommended)
-     */
-    public GoogleAuthController(GoogleOAuthServiceImpl googleOAuthServiceImpl) {
-        this.googleOAuthServiceImpl = googleOAuthServiceImpl;
-    }
 
     /**
      * =========================================================

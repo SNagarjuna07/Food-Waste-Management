@@ -1,5 +1,6 @@
 package com.abc.foodwastemanagement.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +22,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/donors")
 @Tag(name = "Food Waste Donor APIs")
+@RequiredArgsConstructor
 public class FoodDonorController {
 
     private final FoodDonorService foodDonorService;
     private final AuthenticatedUserService authenticatedUserService;
-
-    public FoodDonorController(
-            FoodDonorService foodDonorService,
-            AuthenticatedUserService authenticatedUserService) {
-
-        this.foodDonorService = foodDonorService;
-        this.authenticatedUserService = authenticatedUserService;
-    }
 
     // CREATE 
     @PostMapping

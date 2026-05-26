@@ -1,5 +1,6 @@
 package com.abc.foodwastemanagement.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +19,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/collection-centers")
 @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 @Tag(name = "Food Waste Collection Center APIs")
+@RequiredArgsConstructor
 public class CollectionCenterController {
 
     private final CollectionCenterService collectionCenterService;
-
-    public CollectionCenterController(CollectionCenterService collectionCenterService) {
-        this.collectionCenterService = collectionCenterService;
-    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(description = "Allows ADMIN to create a waste collection center.")

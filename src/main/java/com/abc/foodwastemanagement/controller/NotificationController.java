@@ -1,32 +1,27 @@
 package com.abc.foodwastemanagement.controller;
 
-import java.util.Map;
-
-import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import com.abc.foodwastemanagement.dto.notification.NotificationResponse;
 import com.abc.foodwastemanagement.dto.page.PageResponse;
 import com.abc.foodwastemanagement.dto.user.UserIdentity;
 import com.abc.foodwastemanagement.notification.NotificationServiceImpl;
 import com.abc.foodwastemanagement.service.AuthenticatedUserService;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 @RestController
 @Tag(name = "Notification APIs")
 @RequestMapping("/notifications")
+@RequiredArgsConstructor
 public class NotificationController {
 
-    @Autowired
-    private AuthenticatedUserService authenticatedUserService;
+    private final AuthenticatedUserService authenticatedUserService;
     
-    @Autowired
-    private NotificationServiceImpl notificationServiceImpl;
+    private final NotificationServiceImpl notificationServiceImpl;
 
     /* ---------------- GET ALL NOTIFICATIONS (PAGINATED) ---------------- */
     @GetMapping

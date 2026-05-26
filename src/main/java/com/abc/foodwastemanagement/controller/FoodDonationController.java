@@ -1,5 +1,6 @@
 package com.abc.foodwastemanagement.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,19 +22,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/donations")
 @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 @Tag(name = "Food Waste Donation APIs")
+@RequiredArgsConstructor
 public class FoodDonationController {
 
     private final FoodDonationService foodDonationService;
     private final AuthenticatedUserService authenticatedUserService;
-
-    public FoodDonationController(
-            FoodDonationService foodDonationService,
-            AuthenticatedUserService authenticatedUserService) {
-
-        this.foodDonationService = foodDonationService;
-        this.authenticatedUserService = authenticatedUserService;
-    }
-
     @PostMapping
     @Operation(description = "Allows user to create a food donation.")
     public ResponseEntity<Void> createDonation(@RequestBody CreateFoodDonationRequest request) {
